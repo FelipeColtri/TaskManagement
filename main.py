@@ -120,6 +120,42 @@ def task_remove (key):
 
     print('Tarefa "%s" removida com sucesso!' %(k))
 
+def task_ordenate ():
+    if arg_size == 2:
+        date_sort(-1)
+    else:
+        try:
+            count_task = int(sys.argv[2])
+            date_sort(count_task)
+        except:
+            print('Informe a quantidade inteira máxima de tarefas para mostrar.')
+            exit()
+
+def date_sort (count):
+    data_aux = {}
+    for key in data:
+        for k in data[key]:
+            data_aux[k] =  data[key][k]
+
+    data_aux = sorted(data_aux.items(), key=lambda x:x[1], reverse=True)
+
+    for i in data_aux:
+        print('{:{}}{}'.format(i[0], 40, i[1]))
+
+def show_help ():
+    print('Task Management - Organizador de Tarefas')
+    print('-' * 50)
+    print('Adicione o programa com um alias em um dos arquivos shell carregados ao iniciar o computador:')
+    print('\talias tm="/caminho/do/arquivo/./main.py"')
+    print('Mude a propriedade do arquivo para executável:')
+    print('\tchmode +x /caminho/do/arquivo/main.py')
+    print('Execute o programa em qualquer lugar do terminal:')
+    print('\ttm [COMANDO] [ARGUMENTOS]')
+    print('Opções de COMANDOS são:')
+    print('\t{:{}}\tListar tarefas'.format('-l [ID/SIGLA]', 15))
+    print('\t{:{}}\tAdicionar tarefa'.format('-a [ID/SIGLA]', 15))
+    print('\t{:{}}\tRemover tarefa'.format('-r [ID/SIGLA]', 15))
+
 if __name__ == '__main__':
     if sys.argv[1] == '-l':
         if arg_size == 2:
@@ -138,4 +174,7 @@ if __name__ == '__main__':
             task_select(False)
         elif arg_size == 3:
             task_index(-1)
-
+    elif sys.argv[1] == '-o':
+        task_ordenate()
+    elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
+        show_help()
