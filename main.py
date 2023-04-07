@@ -133,14 +133,27 @@ def task_ordenate ():
 
 def date_sort (count):
     data_aux = {}
+    data_aux_null = {}
+
     for key in data:
-        for k in data[key]:
-            data_aux[k] =  data[key][k]
+        for k in data[key]: 
+            name_key = '{:{}} {}'.format(key, 5, k)
+            date_key = '{:%d/%m}'.format(dt.datetime.strptime(data[key][k], '%Y-%m-%d'))
+            
+            if data[key][k][0] != '0': # '0' -> 0001-01-01 (POG)
+                data_aux[name_key] = date_key
+            else:
+                data_aux_null[name_key] = '-----'
 
-    data_aux = sorted(data_aux.items(), key=lambda x:x[1], reverse=True)
-
+    # na ordenação gera-se uma lista de tuplas
+    data_aux = sorted(data_aux.items(), key=lambda x:x[1]) # ordenado por data
+    #data_aux_null = sorted(data_aux_null.items(), key=lambda x:x[0]) # ordenado alfabericamente
+   
     for i in data_aux:
-        print('{:{}}{}'.format(i[0], 40, i[1]))
+        print('{:{}}{}'.format(i[0], 50, i[1]))
+    
+    for i in data_aux_null:
+        print('{:{}}{}'.format(i, 50, data_aux_null[i]))
 
 def show_help ():
     print('Task Management - Organizador de Tarefas')
