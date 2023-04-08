@@ -2,6 +2,7 @@
 
 import sys
 import json
+import time
 import datetime as dt
 
 file_path = '/home/lite/Documents/TaskManagement/'
@@ -138,19 +139,20 @@ def date_sort (count):
     for key in data:
         for k in data[key]: 
             name_key = '{:{}} {}'.format(key, 5, k)
-            date_key = '{:%d/%m}'.format(dt.datetime.strptime(data[key][k], '%Y-%m-%d'))
             
-            if data[key][k][0] != '0': # '0' -> 0001-01-01 (POG)
-                data_aux[name_key] = date_key
-            else:
+            if data[key][k][0] == '0': # '0' -> 0001-01-01 (POG)
                 data_aux_null[name_key] = '-----'
+            else:
+                date_key = []
+                date_key.append('{:%d/%m}'.format(dt.datetime.strptime(data[key][k], '%Y-%m-%d'))) # data visível
+                date_key.append(time.mktime(dt.datetime.strptime(data[key][k], "%Y-%m-%d").timetuple())) # timestamp
+                data_aux[name_key] = date_key
 
-    # na ordenação gera-se uma lista de tuplas
-    data_aux = sorted(data_aux.items(), key=lambda x:x[1]) # ordenado por data
-    #data_aux_null = sorted(data_aux_null.items(), key=lambda x:x[0]) # ordenado alfabericamente
+    # na ordenação gera-se uma lista de tuplas, onde o segundo elemento tem um array 
+    data_aux = sorted(data_aux.items(), key=lambda x:x[1][1]) # ordenado por timestamp UNIX 
    
     for i in data_aux:
-        print('{:{}}{}'.format(i[0], 50, i[1]))
+        print('{:{}}{}'.format(i[0], 50, i[1][0]))
     
     for i in data_aux_null:
         print('{:{}}{}'.format(i, 50, data_aux_null[i]))
