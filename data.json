@@ -1,8 +1,1 @@
-{
-    "OBRIGAÇÂO1": {
-        "Tarefa 1": "0001-01-01", 
-        "Tarefa 2": "2000-01-01"
-    },
-    "OBRIGAÇÂO2": {},
-    "OBRIGAÇÂO3": {}
-}
+{"MERC": {}, "GEO": {"Fazer um site": "0001-01-01"}, "TCC": {}, "PES": {"Melhorar esse programa": "0001-01-01", "Terminar Victor Hugo": "0001-01-01", "Google sem 7": "0001-01-01", "Google sem 8": "0001-01-01"}, "SC": {"Quest Controlador de Avan\u00e7o por Lugar das Ra\u00edzes": "2023-09-17", "Controlador de Atraso por Lugar das Ra\u00edzes": "2023-09-24", "Controlador de Avan\u00e7o-Atraso por Lugar das Ra\u00edzes": "2023-09-24", "Controlador PD pelo M\u00e9todo do Lugar das Ra\u00edzes": "2023-10-01", "Controlador PI pelo M\u00e9todo do Lugar das Ra\u00edzes": "2023-10-08", "Controlador PID pelo M\u00e9todo do Lugar das Ra\u00edzes": "2023-10-08", "Representa\u00e7\u00e3o de Sistemas em Espa\u00e7o de Estados": "2023-10-12", "Controladores pelos M\u00e9todos de Ziegler-Nichols": "2023-10-15", "Formas Can\u00f4nicas e Transforma\u00e7\u00f5es de Similaridade": "2023-11-19", "Resolu\u00e7\u00e3o das Equa\u00e7\u00f5es de Estado": "2023-11-19", "Aloca\u00e7\u00e3o de Polos": "2023-11-26", "Controladores em Espa\u00e7o de Estados - P3": "2023-11-26", "Envio do relat\u00f3rio do projeto": "2023-11-28", "Prova 1": "2023-10-19", "Prova 2": "2023-12-12"}, "SD": {}, "SE": {}, "HC": {}, "SA": {"Relat\u00f3rio": "2023-09-06", "trabalho final": "0001-01-01", "Quebrar Senhas": "2023-09-20"}, "PI": {"exerc\u00edcios": "0001-01-01"}, "EP": {"Prop Ind Prop Intelc": "2023-09-14", "apresenta\u00e7\u00e3o": "2023-09-14"}, "EC": {}, "RD": {"Trabalho 2": "2023-09-15"}, "TC": {}}

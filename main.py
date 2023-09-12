@@ -5,11 +5,11 @@ import json
 import time
 import datetime as dt
 
-file_path = '/home/lite/Documents/TaskManagement/'
+file_path = '/home/poper/TaskManagement/'
 arg_size = len(sys.argv)
 
 if arg_size == 1:
-    print('Falta de argumentos!')
+    print('Falta de argumentos!') # Mudar, mostrar ajuda ou listar
     exit()
 
 with open('{}data.json'.format(file_path)) as file:
