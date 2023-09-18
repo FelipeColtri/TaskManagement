@@ -52,19 +52,19 @@ def header_remove(header):
         print("Error: Header not Exist!")
 
 def header_edit(header_old, header_new):
-    if header_old == header_new:
-        print("Same Names!")
-        exit()
-
-    if header_new == 'NONE':
-        print("Error: New Name Required! \n[-E <old_header_name> -n <new_header_name>]")
-        exit()
-        
-        if header_new in dataset:
-        print("Error: Name Conflicts!")
-        exit()
-
     if header_old in dataset:
+        if header_old == header_new:
+            print("Same Names!")
+            exit()
+
+        if header_new == 'NONE':
+            print("Error: New Name Required! \n[-E <old_header_name> -n <new_header_name>]")
+            exit()
+            
+        if header_new in dataset:
+            print("Error: Name Conflicts!")
+            exit()
+
         dataset[header_new] = dataset[header_old]
         del dataset[header_old]
         dataset_save()
@@ -73,13 +73,39 @@ def header_edit(header_old, header_new):
 
 # PART OF TASKS
 def task_list(header):    
-    try:
+    if header in dataset:
         print('{}\t {:{}} {}\n{}'.format('ID', 'DESCRIPITION', 35, 'DATE [DD/MM/YYYY]', '-' * 62))
         count = 1
         for key in dataset[header]:
             print('{:02d}\t {:{}} {}'.format(count, key, 35, dataset[header][key]))
             count += 1
-    except:
+    else:
+        print("Error: Header not Exist!")
+
+def task_add(header, task, date):
+    print(header, task, date)
+
+    if header in dataset:
+        if task == None:
+            print("Error: Task need a name!")
+            exit()
+
+        if task not in dataset[header]:
+            if date == None:
+                date = '0001-01-01'
+            else:
+                try:
+                    date = date.split('/')
+                    date = str(dt.date(dt.datetime.now().year, int(date[1]), int(date[0])))
+                except:
+                    print('Error: Date incorrect!')
+                    exit()
+            
+            dataset[header][task] = date
+            dataset_save()
+        else:
+            print("Error: Name Conflicts!")
+    else:
         print("Error: Header not Exist!")
 
 # PART OF MAIN FUNCION
@@ -113,6 +139,8 @@ if __name__ == '__main__':
             task_list(str(args.name).upper())
         else:
             header_list()
+    elif args.add:
+        task_add(str(args.add).upper(), args.name, args.date)
     elif args.Add:
         header_add(str(args.Add).upper())
     elif args.Remove:
