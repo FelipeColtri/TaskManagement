@@ -108,6 +108,20 @@ def task_add(header, task, date):
     else:
         print('Error: Header not Exist!')
 
+def task_remove(header, task):
+    if header in dataset:
+        if task == None:
+            print('Erro: Task Need a name!')
+            exit()
+
+        if task in dataset[header]:
+            del dataset[header][task]
+            dataset_save()
+        else:
+            print('Error: Task not Exist!')
+    else:
+        print('Error: Header not Exist!')
+
 def task_edit(header, task, date):
     if header in dataset:
         if task in dataset[header]:
@@ -152,6 +166,8 @@ if __name__ == '__main__':
             header_list()
     elif args.add:
         task_add(str(args.add).upper(), args.name, args.date)
+    elif args.remove:
+        task_remove(str(args.remove).upper(), args.name)
     elif args.edit:
         task_edit(str(args.edit).upper(), args.name, args.date)
     elif args.Add:
